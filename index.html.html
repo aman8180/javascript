@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8" />
+  <title>T-Shirt</title>
+  <link rel="icon" href="https://images-static.nykaa.com/media/catalog/product/3/e/3e4860b9796_4.jpg?tr=w-500,pr-true" />
+</head>
+<style media="screen">
+  body {
+    background-image: linear-gradient(to right,
+        rgb(97, 187, 183),
+        rgb(180, 172, 194));
+  }
+
+  h3 {
+    color: black;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 25px;
+    text-decoration-line: underline;
+  }
+
+  select.size {
+    width: 70px;
+    height: 30px;
+  }
+
+  select.quantity {
+    width: 70px;
+    height: 30px;
+  }
+
+  label.color {
+    width: 70px;
+    height: 30px;
+  }
+
+  h1 {
+    color: rgb(28, 30, 36);
+    text-align: center;
+    border: 1.5px solid;
+    box-shadow: 2px 6px;
+    background: white;
+    font-family: "Rubik", sans-serif;
+  }
+</style>
+
+<body>
+  <center>
+    <h1>Online Shopping Website</h1>
+  </center>
+  <form name="myForm" id="shirt_cart" onsubmit="return validateForm()" enctype="multipart/form-data" method="put">
+    <img src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/6cfeda43-3320-44e0-84db-eada4196006a/dri-fit-just-do-it-basketball-t-shirt-xt0vRh.png" alt="tshirt pic"
+    width="300" height="300"> 
+    <br>
+    <br>
+    <label for="name"> Enter your Name: - </label>
+    <input type="text" id="name" />
+    <br />
+    <br />
+    <label for="email">EMAIL:-</label>
+    <input type="email" name="email" id="email" /><br /><br />
+
+    <label for="tel">Contact:-</label>
+    <input type="tel" name="tel" id="tel" maxlength="10" minlength="6" /><br /><br />
+
+    <label for="Address"> Enter your Shipping Address : - </label>
+    <textarea id="Address"></textarea>
+    <br />
+    <br />
+
+    <label for="tagline"> Enter Tagline:- </label>
+    <input type="text" id="tagline" minlength="1" maxlength="15" />
+    <br />
+    <br />
+
+    <label for="color"> select color:-</label>
+    <input type="color" id="color" />
+    <br />
+    <br />
+
+    <label for="size"> Choose The Size : -</label>
+    <select name="size" id="size">
+      <option value="Small">S</option>
+      <option value="Medium" selected>M</option>
+      <option value="Large">L</option>
+      <option value="Extra Large">XL</option>
+    </select>
+    <br />
+    <br />
+
+    <label for="quantity"> Enter quantity:- </label>
+    <input type="number" id="quantity" min="1" max="9" />
+    <br />
+    <br />
+
+    <label for="deldate"> Enter Date to be Delivery:- </label>
+    <input type="Date" id="deldate" />
+    <br />
+    <br />
+
+    <b>Select Your Payment Option:-</b><br /><br />
+
+    <input type="radio" id="cod" name="payment" value="cod" />
+    <label for="cod" title="cash on delivery">COD</label><br /><br />
+
+    <input type="radio" id="upi" name="payment" value="upi" />
+    <label for="upi">UPI</label><br /><br />
+
+    <input type="radio" id="net" name="payment" value="net" />
+    <label for="net">Net Banking</label><br /><br />
+    <br />
+    <input type="submit" value="place Order" />
+    <input type="reset" value="reset" />
+    <br />
+    <br />
+
+   
+  </form>
+
+  <script>
+    function validateForm() {
+      // Part A
+      const values = [
+        document.forms["myForm"]["tagline"].value,
+        document.forms["myForm"]["color"].value,
+        document.forms["myForm"]["size"].value,
+        document.forms["myForm"]["payment"].value,
+      ];
+      const hasEmptyFields = Object.values(values).some(
+        (element) => element === ""
+      );
+      if (hasEmptyFields) {
+        alert("Please fill in all fields");
+        return;
+      } // Part B
+      document.getElementById("tagline").value = "";
+      var ele = document.getElementsByName("color");
+      for (var i = 0; i < ele.length; i++) ele[i].checked = false;
+      var ele = document.getElementsByName("payment");
+      for (var i = 0; i < ele.length; i++) ele[i].checked = false;
+      const receipt_formatted = `Thank you for shopping!\nHere's your
+receipt:\nDate: ${new Date().toLocaleDateString("UK")}\nTagline: ${values[0]
+        }\nColor: ${values[1]}\nSize: ${values[2]}\nPayment Method: ${values[3]
+        }`;
+      alert(receipt_formatted);
+    }
+    const form = document.getElementById("shirt_cart");
+    form.addEventListener("submit", (event) => {
+      // stop form submission event.preventDefault();
+    });
+  </script>
+</body>
+
+</html>
